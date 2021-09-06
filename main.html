@@ -1,0 +1,67 @@
+```lisp
+<!--
+    Note Card Printer v.1.712
+    
+    -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+
+    <style type="text/css">
+        @page {
+          size: 5.83in 4.13in;
+        }
+        @media print {
+            .pagebreak {
+                clear: both;
+                page-break-after: always;
+            }
+        }
+        .notecard {
+            clear: right;
+        }
+        .container {
+            width: 40%;
+            height: auto;
+            float: right; 
+            padding-right: -20px; 
+            padding-top: 10px; 
+            font-size: 16px;
+            clear: right;
+            text-align: center;
+            font-weight: 100 !important;
+        }
+        .container p {
+            font-family: 'Work Sans', sans-serif;
+        }
+        .footer {
+            padding-top: 5px;
+            text-align: center; 
+        }
+        img.emoji {
+           height: 1em;
+           width: 1em;
+           margin: 0 .05em 0 .1em;
+           vertical-align: -0.1em;
+        }
+    </style>
+</head>
+
+@foreach($rows as $row)
+    <div>
+        <span style="font-size: 14px; color: black; margin-top: 70px;">{{ str_replace('\r\n', '<br>', $row['Platform Order Number']) }}</span>
+        <div class="container">
+            <p >{!! str_replace('\r\n', '<br>', $row['Item Notes'] ?? '') !!}</p>
+            <hr>
+            <p class="footer" style="font-size: 10px;">Sent with ♥ via SendAFriend<br>sendafriend.co</p>
+        </div>
+        <div class="pagebreak"></div>
+    </div>
+
+    <script type="text/javascript">
+        twemoji.parse(document.body);
+    </script>
+@endforeach
+```
